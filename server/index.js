@@ -1,5 +1,5 @@
 const app = require("./app");
-const { syncAndSeed } = require("../db");
+const { syncAndSeed } = require("../db/seed");
 
 const port = process.env.PORT || 3000;
 

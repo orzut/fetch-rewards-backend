@@ -1,14 +1,11 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize(
-  process.env.DATABASE_URL || "postgres://localhost/fetch_points"
-);
+const db = require("./db");
+const User = require("./models/User");
+const Transaction = require("./models/Transaction");
 
-const syncAndSeed = async () => {
-  try {
-    await db.sync({ force: true });
-  } catch (ex) {
-    console.log(ex);
-  }
-};
+//associations
+Transaction.belongsTo(User, {
+  foreignKey: { name: "userId", allowNull: false },
+});
 
-module.exports = { syncAndSeed };
+module.exports = { db, User, Transaction };
