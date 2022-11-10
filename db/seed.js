@@ -6,8 +6,7 @@ const db = require("./db");
 
 const syncAndSeed = async () => {
   try {
-    await db.sync({ force: true });
-    const user1 = await User.create({ name: "user1" });
+    await db.sync({ force: false });
   } catch (ex) {
     console.log(ex);
   }

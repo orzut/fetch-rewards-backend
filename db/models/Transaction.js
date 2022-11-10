@@ -10,9 +10,11 @@ const Transaction = db.define("transaction", {
   },
   payer: {
     type: STRING,
+    allowNull: false,
   },
   points: {
     type: INTEGER,
+    allowNull: false,
   },
 });
 
