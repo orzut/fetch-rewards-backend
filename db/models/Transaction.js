@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const { STRING, UUID, UUIDV4, INTEGER } = Sequelize;
+const { STRING, UUID, UUIDV4, INTEGER, DATE } = Sequelize;
 
 const Transaction = db.define("transaction", {
   id: {
@@ -15,6 +15,10 @@ const Transaction = db.define("transaction", {
   points: {
     type: INTEGER,
     allowNull: false,
+  },
+  spentPoints: {
+    type: INTEGER,
+    defaultValue: 0,
   },
 });
 

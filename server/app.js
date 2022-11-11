@@ -3,9 +3,6 @@ const app = express();
 
 app.use(express.json());
 
-// const router = require("express").Router();
-// module.exports = router;
-
 app.use("/api", require("./routes/api"));
 app.use("/auth", require("./routes/auth"));
 

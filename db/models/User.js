@@ -1,4 +1,6 @@
 const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
+
 const db = require("../db");
 const { UUID, UUIDV4, STRING } = Sequelize;
 const jwt = require("jsonwebtoken");
@@ -34,6 +36,10 @@ const hashPassword = async (user) => {
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 
+User.prototype.generateToken = function () {
+  return jwt.sign({ id: this.id }, process.env.JWT);
+};
+
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
   if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -41,7 +47,7 @@ User.authenticate = async function ({ username, password }) {
     error.status = 401;
     throw error;
   }
-  return jwt.sign({ id: user.id }, process.env.JWT);
+  return user.generateToken();
 };
 
 User.findByToken = async function (token) {
@@ -60,12 +66,52 @@ User.findByToken = async function (token) {
 };
 
 User.prototype.spendPoints = async function ({ points }) {
-  console.log(await db.models.transaction.findAll());
-  return points;
+  const sortedTransactions = await db.models.transaction.findAll({
+    order: [["createdAt", "ASC"]],
+  });
+  let remainder = points;
+
+  for (const row of sortedTransactions) {
+    let transaction = await db.models.transaction.findOne({
+      where: { id: row.id },
+    });
+    if (remainder === 0) {
+      break;
+    } else if (transaction.points === 0) {
+      continue;
+    } else if (remainder < transaction.points) {
+      transaction.points = transaction.points - remainder;
+      transaction.spentPoints = -remainder;
+      remainder = 0;
+      await transaction.save();
+    } else {
+      remainder = remainder - transaction.points;
+      transaction.spentPoints = -transaction.points;
+      transaction.points = 0;
+      await transaction.save();
+    }
+  }
+  const groupedByPayer = await db.models.transaction.findAll({
+    where: {
+      spentPoints: { [Op.ne]: 0 },
+    },
+    attributes: [
+      "payer",
+      [Sequelize.fn("sum", Sequelize.col("spentPoints")), "spentPoints"],
+    ],
+    group: ["payer"],
+    raw: true,
+  });
+  return groupedByPayer;
 };
 
 User.prototype.totalPoints = async function () {
-  console.log("total points ********************");
-
-  console.log(db.models);
+  return await db.models.transaction.findAll({
+    attributes: [
+      "payer",
+      [Sequelize.fn("sum", Sequelize.col("points")), "points"],
+    ],
+    group: ["payer"],
+    raw: true,
+  });
 };
