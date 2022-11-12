@@ -1,18 +1,11 @@
 const router = require("express").Router();
+const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 
 module.exports = router;
-const { User, Transaction } = require("../../db");
-const { isLoggedIn } = require("./middleware");
+const { Transaction } = require("../../db");
 
-router.put("/points", isLoggedIn, async (req, res, next) => {
-  try {
-    res.send(await req.user.spendPoints(req.body));
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-router.post("/points", isLoggedIn, async (req, res, next) => {
+router.post("/points", async (req, res, next) => {
   try {
     res.status(201).send(await Transaction.create(req.body));
   } catch (ex) {
@@ -20,9 +13,69 @@ router.post("/points", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.get("/points", isLoggedIn, async (req, res, next) => {
+router.put("/points", async (req, res, next) => {
   try {
-    res.send(await req.user.totalPoints());
+    const sortedTransactions = await Transaction.findAll({
+      order: [["createdAt", "ASC"]],
+    });
+    let remainder = req.body.points;
+    for (const row of sortedTransactions) {
+      let transaction = await Transaction.findOne({
+        where: { id: row.id },
+      });
+      if (remainder === 0) {
+        break;
+      } else if (transaction.points === 0) {
+        continue;
+      } else if (remainder < transaction.points) {
+        transaction.spentPoints = -remainder;
+        remainder = 0;
+        await transaction.save();
+      } else {
+        remainder = remainder - transaction.points;
+        transaction.spentPoints = -transaction.points;
+        await transaction.save();
+      }
+    }
+    const groupedByPayer = await Transaction.findAll({
+      where: {
+        spentPoints: { [Op.ne]: 0 },
+      },
+      attributes: [
+        "payer",
+        [Sequelize.fn("sum", Sequelize.col("spentPoints")), "spentPoints"],
+      ],
+      group: ["payer"],
+      raw: true,
+    });
+    res.send(groupedByPayer);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+router.get("/points", async (req, res, next) => {
+  try {
+    res.send(
+      await Transaction.findAll({
+        attributes: [
+          "payer",
+          [
+            Sequelize.fn(
+              "sum",
+              Sequelize.where(
+                Sequelize.col("points"),
+                "+",
+                Sequelize.col("spentPoints")
+              )
+            ),
+            "total_balance",
+          ],
+        ],
+        group: ["payer"],
+        raw: true,
+      })
+    );
   } catch (ex) {
     next(ex);
   }
