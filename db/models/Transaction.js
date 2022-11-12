@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
-const db = require("../db");
-const { STRING, UUID, UUIDV4, INTEGER, DATE } = Sequelize;
+const db = require("../index");
+const { STRING, UUID, UUIDV4, INTEGER, VIRTUAL } = Sequelize;
 
 const Transaction = db.define("transaction", {
   id: {
@@ -21,5 +21,13 @@ const Transaction = db.define("transaction", {
     defaultValue: 0,
   },
 });
+
+Transaction.totalPoints = async function () {
+  return await Transaction.findAll({
+    attributes: [
+      [Sequelize.fn("sum", Sequelize.col("points")), "total_points"],
+    ],
+  });
+};
 
 module.exports = Transaction;

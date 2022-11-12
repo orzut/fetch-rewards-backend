@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
-const db = require("./db");
-const Transaction = require("./models/Transaction");
+const databaseName = "fetch_points";
+const db = new Sequelize(
+  process.env.DATABASE_URL || `postgres://localhost/${databaseName}`
+);
 
-module.exports = { db, Transaction };
+module.exports = db;

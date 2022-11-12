@@ -1,5 +1,5 @@
 const Transaction = require("./models/Transaction");
-const db = require("./db");
+const db = require("./index");
 
 //seeding data
 

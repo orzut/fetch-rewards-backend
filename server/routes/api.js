@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const { Op } = require("sequelize");
 
 module.exports = router;
-const { Transaction } = require("../../db");
+const Transaction = require("../../db/models/Transaction");
 
 router.post("/points", async (req, res, next) => {
   try {
@@ -19,6 +19,13 @@ router.put("/points", async (req, res, next) => {
       order: [["createdAt", "ASC"]],
     });
     let remainder = req.body.points;
+    if (remainder < 0 || !Number.isInteger(remainder)) {
+      throw new Error("Please enter positive integer value");
+    }
+    const { total_points } = (await Transaction.totalPoints())[0].dataValues;
+    if (remainder > total_points) {
+      throw new Error("Not enough points");
+    }
     for (const row of sortedTransactions) {
       let transaction = await Transaction.findOne({
         where: { id: row.id },
