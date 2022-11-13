@@ -7,7 +7,6 @@
 * [Technologies](#technologies)
 
 ## General Info
-This is a web service that accepts HTTP GET, POST and PUT requests.
 
 ## Install PostgreSQL
 * Check if your Homebrew is installed, if not run ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
