@@ -37,6 +37,12 @@ This request responds with the list of payers and according points spent by a us
 * GET request to url: http://localhost:3000/api/points responds with the amount of points each payer has after redeeming the users' points.
 * POST request to http://localhost:3000/api/points allows to add transactions to database.
 
+### Using curl
+Run the following commands on your terminal to test the apis:
+* PUT request ```curl -d '{"points": 5000}' -H "Content-Type: application/json" -X PUT http://localhost:3000/api/points```
+* GET request ```curl -v http://localhost:3000/api/points```
+* POST request ```curl -d '{"payer": "UNILEVER", "points": 5000}' -H "Content-Type: application/json" http://localhost:3000/api/points```
+
 
 ## Technologies
 * Node.js
