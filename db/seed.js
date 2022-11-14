@@ -16,6 +16,7 @@ const syncAndSeed = async () => {
       }),
       Transaction.create({ payer: "DANNON", points: 1000 }),
     ]);
+    console.log("Database has been setup");
   } catch (ex) {
     console.log(ex);
   }
