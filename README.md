@@ -1,4 +1,4 @@
-# fetch-rewards-backend
+# Fetch Rewards Points
 ## Table of contents
 * [General info](#general-info)
 * [Install PostgreSQL](#install-postgresql)
