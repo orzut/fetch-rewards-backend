@@ -7,6 +7,7 @@
 * [Technologies](#technologies)
 
 ## General Info
+This is RESTful web service that accepts HTTP POST, PUT and GET requests. The service was built with PostgreSQL and Sequelize for working with database, and Express.js for creating APIs.
 
 ## Install PostgreSQL
 * Check if your Homebrew is installed, if not run ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
