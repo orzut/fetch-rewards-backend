@@ -26,9 +26,9 @@ Postgres commands:
 After the postgreSQL is installed run the following commands:
 * ```git clone https://github.com/orzut/fetch-rewards-backend```
 * ```cd fetch-rewards-backend```
-* ```npm install```
-* ```createdb fetch_points```
-* ```npm run start```
+* To install packages ```npm install```
+* To create a database table that we will use to store transactions ```createdb fetch_points```
+* To run our web service or a server ```npm run start```
 
 ## Test web service
 ### Using Postman
