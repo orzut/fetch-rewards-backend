@@ -10,7 +10,7 @@
 This is RESTful web service that accepts HTTP POST, PUT and GET requests. The service was built with PostgreSQL and Sequelize for working with database, and Express.js for creating APIs.
 
 ## Install PostgreSQL
-Open a terminal and check if homebrew is installed:
+Open terminal and check if homebrew is installed:
 * ```$ which brew```
 * If installed, you'll see: ```> /usr/local/bin/brew```
 * If not, you'll see: ```> brew not found```
@@ -30,35 +30,36 @@ To check for succesfull installation, run:
 
 * ```$ psql postgres```
 * ```> psql (14.6 (Homebrew)) Type "help" for help.```
+* To exit postgres ```$ \q```
 
 ## Run web service
-After the postgreSQL is installed, run the following commands:
+After the postgreSQL is installed, run the following commands to create a copy of backend service:
 * ```$ git clone https://github.com/orzut/fetch-rewards-backend```
 * ```$ cd fetch-rewards-backend```
 
-Install npm packages 
+Next, install npm packages: 
 * ```$ npm install```
 
-Then create a database table that will be used to store transactions
+Next, create a database table that will be used to store transactions
 * ```$ createdb fetch_points```
 
-Then run the web service: 
+Next, run the web service: 
 * ```$ npm run start```
 
 If all steps were successfully executed, database should be set up and listening on port 3000, 
 
 ## Test web service
-
-Open new terminal
-cd fetch-rewards-backend
-psql postgres
-\c fetch_points
-You are now connected to database "fetch_points" as user
-select * from transactions;
+Open new terminal and run the following commands to check if the web service was set up properly:
+* Access the directory: ```$ cd fetch-rewards-backend```
+* Run psql: ```$ psql postgres```
+* Connect to database: ```$ \c fetch_points```
+* Expected outcome: ```> You are now connected to database "fetch_points" as user```
+* Run: ```$ select * from transactions;```
+* Following output should be displayed:
 
 <img width="952" alt="image" src="https://user-images.githubusercontent.com/100243695/202025951-b8b8882f-6c10-47d1-883a-6688f657fbff.png">
 
-table is pre-populated. expected result
+* Data table is pre-populated per instructions from the assignment. Users can add more transactions through POST requests as described below. 
 
 ### Using Postman
 * PUT request to url: http://localhost:3000/api/points, enter {"points": 5000} to body field and select JSON format.
