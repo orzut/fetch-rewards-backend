@@ -18,7 +18,7 @@ Check if your homebrew is installed:
 * If homebrew is not installed, run: 
 ```$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
 
-After installation, update homewbrew 
+After installation, update homewbrew: 
 * ```$ brew update```
 
 After homebrew update, install postgres:
@@ -31,18 +31,19 @@ To check for succesfull installation, run:
 * ```$ psql postgres```
 * ```> psql (14.6 (Homebrew)) Type "help" for help.```
 
-Postgres commands:
-* to connect to database ```\c fetch_points```
-* to see tables details ```\d transactions```
-* to quit postgres ```\q```
-
 ## Run web service
-After the postgreSQL is installed run the following commands:
-* ```git clone https://github.com/orzut/fetch-rewards-backend```
-* ```cd fetch-rewards-backend```
-* To install packages ```npm install```
-* To create a database table that we will use to store transactions ```createdb fetch_points```
-* To run our web service or a server ```npm run start```
+After the postgreSQL is installed, run the following commands:
+* ```$ git clone https://github.com/orzut/fetch-rewards-backend```
+* ```$ cd fetch-rewards-backend```
+
+Install npm packages 
+* ```$ npm install```
+
+Then create a database table that will be used to store transactions
+* ```$ createdb fetch_points```
+
+Then run our web service or a server 
+* ```$ npm run start```
 
 ## Test web service
 ### Using Postman
