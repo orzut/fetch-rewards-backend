@@ -10,7 +10,14 @@
 This is RESTful web service that accepts HTTP POST, PUT and GET requests. The service was built with PostgreSQL and Sequelize for working with database, and Express.js for creating APIs.
 
 ## Install PostgreSQL
-* Check if your Homebrew is installed, if not run ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
+* Check if your Homebrew is installed:
+```$ which brew```
+
+If installed: ```> /usr/local/bin/brew```
+If not: ```> brew not found```
+
+If brew is not installed, run: 
+```$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
 * To update homewbrew ```brew update```
 * To install postgres ```brew install postgresql```
 * ```brew services start postgresql```
