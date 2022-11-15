@@ -10,13 +10,13 @@
 This is RESTful web service that accepts HTTP POST, PUT and GET requests. The service was built with PostgreSQL and Sequelize for working with database, and Express.js for creating APIs.
 
 ## Install PostgreSQL
-Check if your homebrew is installed:
+Open a terminal and check if homebrew is installed:
 * ```$ which brew```
 * If installed, you'll see: ```> /usr/local/bin/brew```
 * If not, you'll see: ```> brew not found```
 
 * If homebrew is not installed, run: 
-```$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
+```$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
 
 After installation, update homewbrew: 
 * ```$ brew update```
@@ -42,10 +42,15 @@ Install npm packages
 Then create a database table that will be used to store transactions
 * ```$ createdb fetch_points```
 
-Then run our web service or a server 
+Then run the web service: 
 * ```$ npm run start```
 
+If all steps were successfully executed, database should be set up and listening on port 3000, 
+
 ## Test web service
+
+
+
 ### Using Postman
 * PUT request to url: http://localhost:3000/api/points, enter {"points": 5000} to body field and select JSON format.
 This request responds with the list of payers and according points spent by a user to redeem their points.
