@@ -12,12 +12,13 @@ This is RESTful web service that accepts HTTP POST, PUT and GET requests. The se
 ## Install PostgreSQL
 * Check if your Homebrew is installed:
 ```$ which brew```
-* If installed: ```> /usr/local/bin/brew```
-* If not: ```> brew not found```
+* If installed, you'll see: ```> /usr/local/bin/brew```
+* If not, you'll see: ```> brew not found```
+
 * If brew is not installed, run: 
 ```$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` on your terminal
-* To update homewbrew ```brew update```
-* To install postgres ```brew install postgresql```
+* Update homewbrew ```brew update```
+* Install postgres ```brew install postgresql```
 * ```brew services start postgresql```
 * To run postgres ```psql postgres```
 
