@@ -49,7 +49,16 @@ If all steps were successfully executed, database should be set up and listening
 
 ## Test web service
 
+Open new terminal
+cd fetch-rewards-backend
+psql postgres
+\c fetch_points
+You are now connected to database "fetch_points" as user
+select * from transactions;
 
+<img width="952" alt="image" src="https://user-images.githubusercontent.com/100243695/202025951-b8b8882f-6c10-47d1-883a-6688f657fbff.png">
+
+table is pre-populated. expected result
 
 ### Using Postman
 * PUT request to url: http://localhost:3000/api/points, enter {"points": 5000} to body field and select JSON format.
