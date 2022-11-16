@@ -4,6 +4,7 @@
 * [Install PostgreSQL](#install-postgresql)
 * [Run web service](#run-web-service)
 * [Test web service](#test-web-service)
+* [Validate features](#validate-features)
 * [Technologies](#technologies)
 
 ## General Info
@@ -142,13 +143,13 @@ This request is used to get the remaining amount of points each payer has after 
 
 This request is used to redeem user points and it responds with the list of payers and points subtracted from each payer based on original transaction date.
   
-- PUT request ```curl -d '{"points": 5000}' -H "Content-Type: application/json" -X PUT http://localhost:3000/api/points```
+- PUT request ```$ curl -d '{"points": 5000}' -H "Content-Type: application/json" -X PUT http://localhost:3000/api/points```
   
 #### Use case: Return all payer point balances
 
 This request is used to get the remaining amount of points each payer has after user redeems their points.
   
-- GET request ```curl -v http://localhost:3000/api/points```
+- GET request ```$ curl -v http://localhost:3000/api/points```
 
 
 ## Technologies
