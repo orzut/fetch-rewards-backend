@@ -72,7 +72,7 @@ Open new terminal and run the following commands to check if the web service was
 * Run: ```$ select * from transactions;```
 * Output similar to the following should be displayed:
 
-<img width="952" alt="image" src="https://user-images.githubusercontent.com/100243695/202025951-b8b8882f-6c10-47d1-883a-6688f657fbff.png">
+<img width="952" alt="image" src="https://user-images.githubusercontent.com/100243695/202081316-3525f8c6-980e-44e7-ba46-d7ace532eb90.png">
 
 * Data table is pre-populated based on the examples from the assignment. Users can add more transactions through POST requests as described below. 
 
