@@ -84,14 +84,14 @@ In terminal, repeat the following steps:
 * ```$ createdb fetch_points```
 * ```$ npm run start```
 
-Database is now ready to be called.
+Database is now ready to be called. Below is the description of API calls using Postman and Curl.
   
 ### API calls using Postman
 Download and login to Postman: https://www.postman.com/downloads/ (Note: postman cloud cannot make localhost calls)
 
 Select "Create new HTTP request"
 
-### Use case: Add transactions for a specific payer and date.  
+#### Use case: Add transactions for a specific payer and date.  
 
   This request is used to add transactions to the database. (Note: current database is pre-populated with examples)
   
@@ -105,7 +105,7 @@ Select "Create new HTTP request"
   <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202077682-ab1ebd81-c98c-4d3f-989e-2a87109907e6.png">
 
 
-### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
 
 This request is used to redeem user points and it responds with the list of payers and points subtracted from each payer based on original transaction date.
   
@@ -118,7 +118,7 @@ This request is used to redeem user points and it responds with the list of paye
 
 <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202076640-bcd9da68-04e2-4a83-8bc5-8390f2b3c6ae.png">
   
-### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+#### Use case: Return all payer point balances
 
 This request is used to get the remaining amount of points each payer has after user redeems their points.
   
@@ -130,12 +130,25 @@ This request is used to get the remaining amount of points each payer has after 
 
   <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202077428-98e3fb9d-b9a4-4b18-8678-3edb4ff625fa.png">
 
+### API calls using curl
 
-### Using curl
-Run the following commands on your terminal to test the apis:
-* PUT request ```curl -d '{"points": 5000}' -H "Content-Type: application/json" -X PUT http://localhost:3000/api/points```
-* GET request ```curl -v http://localhost:3000/api/points```
-* POST request ```curl -d '{"payer": "UNILEVER", "points": 5000}' -H "Content-Type: application/json" http://localhost:3000/api/points```
+  #### Use case: Add transactions for a specific payer and date.  
+
+  This request is used to add transactions to the database. (Note: current database is pre-populated with example entries)
+  
+- POST request ```$ curl -d '{"payer": "UNILEVER", "points": 5000}' -H "Content-Type: application/json" http://localhost:3000/api/points```
+
+#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+
+This request is used to redeem user points and it responds with the list of payers and points subtracted from each payer based on original transaction date.
+  
+- PUT request ```curl -d '{"points": 5000}' -H "Content-Type: application/json" -X PUT http://localhost:3000/api/points```
+  
+#### Use case: Return all payer point balances
+
+This request is used to get the remaining amount of points each payer has after user redeems their points.
+  
+- GET request ```curl -v http://localhost:3000/api/points```
 
 
 ## Technologies
