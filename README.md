@@ -91,20 +91,21 @@ Download and login to Postman: https://www.postman.com/downloads/ (Note: postman
 
 Select "Create new HTTP request"
 
-#### Use case: Add transactions for a specific payer and date.  
+### Use case: Add transactions for a specific payer and date.  
 
   This request is used to add transactions to the database. (Note: current database is pre-populated with examples)
   
 - API call type: POST
 - url: ```http://localhost:3000/api/points```
 - Select Body option, raw format, select JSON 
-- Enter following command within Body: ``` { "payer": <string>, "points": <integer> }```
+- Enter following command within Body: ``` { "payer": <"string">, "points": <integer> }```
 
    Example input and output shown below:
   
-  
+  <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202077682-ab1ebd81-c98c-4d3f-989e-2a87109907e6.png">
 
-#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+
+### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
 
 This request is used to redeem user points and it responds with the list of payers and points subtracted from each payer based on original transaction date.
   
@@ -117,9 +118,9 @@ This request is used to redeem user points and it responds with the list of paye
 
 <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202076640-bcd9da68-04e2-4a83-8bc5-8390f2b3c6ae.png">
   
-#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
 
-This request is used to get the remaining amount of points each payer has after user point redemption.
+This request is used to get the remaining amount of points each payer has after user redeems their points.
   
 - API call type: GET
 - url: ```http://localhost:3000/api/points```
