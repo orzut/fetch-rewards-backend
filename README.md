@@ -93,7 +93,7 @@ Download and login to Postman: https://www.postman.com/downloads/ (Note: postman
 
 Select "Create new HTTP request"
 
-#### Use case: Add transactions for a specific payer and date.  
+#### Use case: Add transactions for a specific payer and date
 
   This request is used to add transactions to the database. (Note: current database is pre-populated with examples)
   
