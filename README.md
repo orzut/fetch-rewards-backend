@@ -22,7 +22,7 @@ The points are redeemed based on the following rules:
 - Redemption is based on the oldest transaction date
 - Payer balances cannot go below 0
 - User cannot redeem non-integer amount of points
-- User can record (POST) negative (credit) points, but users cannot redeem (PUT) negative amount of points.
+- User can record (POST) negative points (credit), but users cannot redeem (PUT) negative amount of points.
   
 Follow the next steps to test and validate the web service.
 
