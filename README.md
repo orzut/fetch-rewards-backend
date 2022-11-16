@@ -5,6 +5,7 @@
 * [Run web service](#run-web-service)
 * [Test web service](#test-web-service)
 * [Validate features](#validate-features)
+* [Errors](#errors)
 * [Technologies](#technologies)
 
 ## General Info
@@ -151,7 +152,11 @@ This request is used to get the remaining amount of points each payer has after 
   
 - GET request ```$ curl -v http://localhost:3000/api/points```
 
-
+## Errors
+  
+* When user enters non-integer value in POST request, user gets the following error response: ```> Invalid input syntax for type integer```
+* When user enters non-integer value in PUT request, user gets the following error response: ```> Please enter positive integer value```
+  
 ## Technologies
 * Node.js
 * Express version 4.18.2
