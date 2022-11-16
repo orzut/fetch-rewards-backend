@@ -55,13 +55,26 @@ Open new terminal and run the following commands to check if the web service was
 * Connect to database: ```$ \c fetch_points```
 * Expected outcome: ```> You are now connected to database "fetch_points" as user```
 * Run: ```$ select * from transactions;```
-* Following output should be displayed:
+* Output similar to the following should be displayed:
 
 <img width="952" alt="image" src="https://user-images.githubusercontent.com/100243695/202025951-b8b8882f-6c10-47d1-883a-6688f657fbff.png">
 
-* Data table is pre-populated per instructions from the assignment. Users can add more transactions through POST requests as described below. 
+* Data table is pre-populated based on the examples from the assignment. Users can add more transactions through POST requests as described below. 
 
-### Using Postman
+## Assignment
+The following web service is built to store transactions, redemptions, and balances of points by payers. The initial data is pre-populated, but users can add additional transactions using the POST requests.
+
+This web service provides the following features:
+- Add transactions for a specific payer and date.
+- Spend points using the rules above and return a list of { "payer": <string>, "points": <integer> }
+- Return all payer point balances.
+  
+The points are redeemed based on two rules:
+1. Redemption is based on the oldest transaction date
+2. Payer balances cannot go below 0.
+
+## Validate features
+###Using Postman
 * PUT request to url: http://localhost:3000/api/points, enter {"points": 5000} to body field and select JSON format.
 This request responds with the list of payers and according points spent by a user to redeem their points.
 * GET request to url: http://localhost:3000/api/points responds with the amount of points each payer has after redeeming the users' points.
