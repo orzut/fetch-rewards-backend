@@ -61,7 +61,7 @@ Next, create a database table that will be used to store transactions
 Next, run the web service: 
 * ```$ npm run start```
 
-If all steps were successfully executed, database should be set up and listening on port 3000, 
+If all steps were successfully executed, database should be set up and listening on port 3000 
 
 ## Test web service
 Open new terminal and run the following commands to check if the web service was set up properly:
@@ -87,26 +87,48 @@ In terminal, repeat the following steps:
 Database is now ready to be called.
   
 ### API calls using Postman
-* Download and login to Postman: https://www.postman.com/downloads/ (Note: postman cloud cannot make localhost calls)
-* Select "Create new HTTP request"
+Download and login to Postman: https://www.postman.com/downloads/ (Note: postman cloud cannot make localhost calls)
 
-* Use case: Add transactions for a specific payer and date.  
+Select "Create new HTTP request"
 
+#### Use case: Add transactions for a specific payer and date.  
 
-* Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+  This request is used to add transactions to the database. (Note: current database is pre-populated with examples)
   
-* API call type: PUT
-* url: http://localhost:3000/api/points 
-* Select Body option, raw format, select JSON 
-* Enter following command within Body: {"points": 5000}
-  
-This request responds with the list of payers and according points spent by a user to redeem their points.
+- API call type: POST
+- url: ```http://localhost:3000/api/points```
+- Select Body option, raw format, select JSON 
+- Enter following command within Body: ``` { "payer": <string>, "points": <integer> }```
 
-<img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202065326-83d83c0f-f7a0-4813-94d0-4e5cb7c3cd7e.png">
+   Example input and output shown below:
   
-  * GET request to url: http://localhost:3000/api/points responds with the amount of points each payer has after redeeming the users' points.
-* POST request to http://localhost:3000/api/points allows to add transactions to database.
-  { "payer": <string>, "points": <integer> }
+  
+
+#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+
+This request is used to redeem user points and it responds with the list of payers and points subtracted from each payer based on original transaction date.
+  
+- API call type: PUT
+- url: ```http://localhost:3000/api/points```
+- Select Body option, raw format, select JSON 
+- Enter following command within Body: ```{ "points": integer }```
+  
+  Example input and output shown below:
+
+<img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202076640-bcd9da68-04e2-4a83-8bc5-8390f2b3c6ae.png">
+  
+#### Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+
+This request is used to get the remaining amount of points each payer has after user point redemption.
+  
+- API call type: GET
+- url: ```http://localhost:3000/api/points```
+- Body: none
+  
+   Example input and output shown below:
+
+  <img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202077428-98e3fb9d-b9a4-4b18-8678-3edb4ff625fa.png">
+
 
 ### Using curl
 Run the following commands on your terminal to test the apis:
