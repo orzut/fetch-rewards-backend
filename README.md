@@ -9,6 +9,21 @@
 ## General Info
 This is RESTful web service that accepts HTTP POST, PUT and GET requests. The service was built with PostgreSQL and Sequelize for working with database, and Express.js for creating APIs.
 
+This web service is built to store transactions, redemptions, and balances of points by payers. The initial data is pre-populated, but users can add additional transactions using the POST requests.
+
+This web service provides the following features:
+- Add transactions for a specific payer and date.
+- Spend points using the rules above and return a list of { "payer": <string>, "points": <integer> }
+- Return all payer point balances.
+  
+The points are redeemed based on the following rules:
+- Redemption is based on the oldest transaction date
+- Payer balances cannot go below 0
+- User cannot redeem non-integer amount of points
+- User can record (POST) negative (credit) points, but users cannot redeem (PUT) negative amount of points.
+  
+Follow the next steps to test and validate the web service.
+
 ## Install PostgreSQL
 Open terminal and check if homebrew is installed:
 * ```$ which brew```
@@ -61,24 +76,37 @@ Open new terminal and run the following commands to check if the web service was
 
 * Data table is pre-populated based on the examples from the assignment. Users can add more transactions through POST requests as described below. 
 
-## Assignment
-The following web service is built to store transactions, redemptions, and balances of points by payers. The initial data is pre-populated, but users can add additional transactions using the POST requests.
-
-This web service provides the following features:
-- Add transactions for a specific payer and date.
-- Spend points using the rules above and return a list of { "payer": <string>, "points": <integer> }
-- Return all payer point balances.
-  
-The points are redeemed based on two rules:
-1. Redemption is based on the oldest transaction date
-2. Payer balances cannot go below 0.
-
 ## Validate features
-###Using Postman
-* PUT request to url: http://localhost:3000/api/points, enter {"points": 5000} to body field and select JSON format.
+
+In terminal, repeat the following steps:
+* ```$ cd fetch-rewards-backend```
+* ```$ npm install```
+* ```$ createdb fetch_points```
+* ```$ npm run start```
+
+Database is now ready to be called.
+  
+### API calls using Postman
+* Download and login to Postman: https://www.postman.com/downloads/ (Note: postman cloud cannot make localhost calls)
+* Select "Create new HTTP request"
+
+* Use case: Add transactions for a specific payer and date.  
+
+
+* Use case: Spend points and return a list of { "payer": <string>, "points": <integer> }
+  
+* API call type: PUT
+* url: http://localhost:3000/api/points 
+* Select Body option, raw format, select JSON 
+* Enter following command within Body: {"points": 5000}
+  
 This request responds with the list of payers and according points spent by a user to redeem their points.
-* GET request to url: http://localhost:3000/api/points responds with the amount of points each payer has after redeeming the users' points.
+
+<img width="905" alt="image" src="https://user-images.githubusercontent.com/100243695/202065326-83d83c0f-f7a0-4813-94d0-4e5cb7c3cd7e.png">
+  
+  * GET request to url: http://localhost:3000/api/points responds with the amount of points each payer has after redeeming the users' points.
 * POST request to http://localhost:3000/api/points allows to add transactions to database.
+  { "payer": <string>, "points": <integer> }
 
 ### Using curl
 Run the following commands on your terminal to test the apis:
